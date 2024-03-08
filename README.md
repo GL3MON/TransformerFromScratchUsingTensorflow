@@ -13,7 +13,7 @@ After training, you can test the model's generation capability by calling the ge
 
 # Requirements
 TensorFlow
-NumPy
+Numpy
 
 # Acknowledgements
 This implementation is based on the Transformer architecture proposed in the paper "Attention is All You Need" by Vaswani et al.
