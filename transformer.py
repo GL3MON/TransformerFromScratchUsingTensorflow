@@ -1,12 +1,15 @@
 import tensorflow as tf
 import numpy as np
+import logging
+tf.get_logger().setLevel(logging.ERROR)
+
 
 block_size = 32
 batch_size = 8
 learning_rate = 3e-4
 max_iters = 5000
 eval_intervals = 200
-epochs = 1
+epochs = 5000
 n_embd = 384
 n_heads = 6
 n_layer = 6
@@ -148,7 +151,7 @@ class DecoderBlock(tf.keras.layers.Layer):
         x = inp[0]
         enc_out = inp[1]
         att_out = self.sa(x, x, x) #Passing through the self attention layer
-        x = self.ln1(tf.add(x, self.dropout(att_out))) .
+        x = self.ln1(tf.add(x, self.dropout(att_out)))  #Adding the residual connection
         att_out = self.ca(enc_out, enc_out, x) #Passing through the cross attention layer
         x = self.ln2(tf.add(x, self.dropout(att_out)))
         ff_out = self.ffwd(x)
